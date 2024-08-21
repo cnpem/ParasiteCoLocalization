@@ -47,7 +47,6 @@ graph LR
     pre[Preprocessing] --> seg[Segmentation] --> ext[Feature extraction] --> mining[Data Mining]
 ```
 
-
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

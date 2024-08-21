@@ -2,7 +2,7 @@
 
 Projeto de Introdução a Pesquisa III (2024.2): Implementação de rotinas para processamento de imagens de microscopia ótica
 
-# Apresentação
+## Introdução e motivação
 
 O Laboratório Nacional de Biociências (LNBio) do Centro Nacional de Pesquisa em Energia e Materiais (CNPEM) requer computação de alto desempenho para processamento e análise de imagens geradas por microscopia. Uma das demandas de processamento computacional é a análise de experimentos de triagem biológica automatizada em alta escala (do inglês, High-Throughput Screening; HTS) para a busca de novos fármacos.
 
@@ -12,6 +12,6 @@ Atualmente, a infraestrutura de armazenamento e processamento de imagens biológ
 
 A partir do OMERO e da capacidade de processamento do HPC Marvin, as tarefas de processamento e análise serão atendidas por protocolos construídos a partir de programas de código livre e aberto, como o Cellprofiler (https://cellprofiler.org/) e o Fiji (https://fiji.sc/), que executam algoritmos de visão computacional e também adotam métodos de aprendizado de máquina para segmentação e classificação de estruturas celulares, como citoesqueleto e núcleo.
 
-# Objetivos
+## Objetivos
 
 Desenvolver protocolos de processamento de imagens de microscopia ótica de células para experimentos HTS, construídos a partir de programas de código livre e aberto, e aproveitando o poder computacional da infraestrutura do HPC Marvin.
