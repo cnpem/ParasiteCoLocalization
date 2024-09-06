@@ -16,66 +16,6 @@ A partir do OMERO e da capacidade de processamento do HPC Marvin, as tarefas de 
 
 Desenvolver protocolos de processamento de imagens de microscopia ótica de células para experimentos HTS, construídos a partir de programas de código livre e aberto, e aproveitando o poder computacional da infraestrutura do HPC Marvin.
 
-## Resultados
 
-### Viabilidade Celular
-
-Nesse caso o objetivo era seguimentar os nucleos da celulas vero para medir a viabilidade celular do experimento tendo assim os seguintes resultados:
-
-Tratamento classico:
-
-- Controle
-  
-   - A24
-
-     ![A24_sem_IA](https://github.com/user-attachments/assets/8140a827-dde4-47fe-818f-12b94d0ee1df)
-
-     Essa imagem corresponde a um dos poços de controle desse enssaio sendo esse em questão o poço A24, nela podemos ver a seguimentação dos nucleos.Logo a baixo temos uma aproximação de uma das áreas de maior dificulde pelo aglomerado de varias células.
-
-     ![A24_sem_IA_aproximação](https://github.com/user-attachments/assets/6744f75a-b712-403e-bcff-ab20f606a861)
-
-   - B24
-     
-     ![B24_sem_IA](https://github.com/user-attachments/assets/7bbaef36-1e00-4bcb-bbad-fe23bdb35be7)
-
-     Essa imagem corresponde a outro dos poços de controle desse enssaio sendo esse em questão o poço B24 nela podemos ver a seguimentação dos nucleos.Logo a baixo temos uma aproximação de uma das áreas de maior dificulde pelo aglomerado de varias células.
-     
-     ![B24_sem_IA_aproximação](https://github.com/user-attachments/assets/4da79f6c-b897-4800-a669-d3b4a93200e3)
-
-- Linha A:
-
-   - A1
-  
-     ![A1_sem_IApng](https://github.com/user-attachments/assets/48d7c4f4-957f-414c-bf96-adac0b8d85fa)
-  
-     Essa imagem corresponde a um dos poços da linha A da placa enssaio sendo esse em questão o poço A1, nela podemos ver a seguimentação dos nucleos.Logo a baixo temos uma aproximação de uma das áreas de maior dificulde pelo aglomerado de varias células.
-  
-     ![A1_sem_IA_aproximação](https://github.com/user-attachments/assets/8117f7d8-a6b4-4c28-bc11-59276888afda)
-  
-   - A2
-  
-     ![A2_sem_IA](https://github.com/user-attachments/assets/e1e02beb-6bef-47f8-98e7-d3c715e92e09)
-     
-     Essa imagem corresponde a um dos poços da linha A da placa enssaio sendo esse em questão o poço A2, nela podemos ver a seguimentação dos nucleos.Logo a baixo temos uma aproximação de uma das áreas de maior dificulde pelo aglomerado de varias células.
-
-     ![A2_sem_IA_aproximação](https://github.com/user-attachments/assets/fb481084-9b38-4a5d-93e6-d6d828e549c3)
-
-- Linha B:
-
-   - B1
-  
-     ![B1_sem_IA](https://github.com/user-attachments/assets/caa6a6fb-a93a-4e76-886c-c031c049d5f3)
-  
-     Essa imagem corresponde a um dos poços da linha B da placa enssaio sendo esse em questão o poço B1, nela podemos ver a seguimentação dos nucleos.Logo a baixo temos uma aproximação de uma das áreas com mais células.
-  
-      ![B1_sem_IA_aproximada](https://github.com/user-attachments/assets/10df32e4-92a4-43a6-bc4b-a7827263dcca)
-  
-   - B2
-  
-     ![B2_sem_IA](https://github.com/user-attachments/assets/e19729f0-59c2-473a-9512-793129580e06)
-     
-     Essa imagem corresponde a um dos poços da linha B da placa enssaio sendo esse em questão o poço B2, nela podemos ver a seguimentação dos nucleos.Logo a baixo temos uma aproximação de uma das áreas com mais células.
-
-     ![B2_sem_IA_aproximação](https://github.com/user-attachments/assets/a078a9bd-7b97-4b99-a7cf-92cade075b49)
 
 
