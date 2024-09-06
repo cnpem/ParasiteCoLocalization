@@ -15,3 +15,15 @@ A partir do OMERO e da capacidade de processamento do HPC Marvin, as tarefas de 
 ## Objetivos
 
 Desenvolver protocolos de processamento de imagens de microscopia ótica de células para experimentos HTS, construídos a partir de programas de código livre e aberto, e aproveitando o poder computacional da infraestrutura do HPC Marvin.
+
+## Resultados
+
+###Viabilidade Celular
+
+Nesse caso o objetivo era seguimentar os nucleos da celulas vero para medir a viabilidade celular do experimento
+
+![A24_sem_IA](https://github.com/user-attachments/assets/8140a827-dde4-47fe-818f-12b94d0ee1df)
+essa imagem corresponde a um dos poços de controle desse enssaio sendo esse em questão o poço A24
+
+
+
