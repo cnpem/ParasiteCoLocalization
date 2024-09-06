@@ -68,7 +68,7 @@ Tratamento classico:
   
      Essa imagem corresponde a um dos poços da linha B da placa enssaio sendo esse em questão o poço B1, nela podemos ver a seguimentação dos nucleos.Logo a baixo temos uma aproximação de uma das áreas com mais células.
   
-    ![B1_sem_IA_aproximada](https://github.com/user-attachments/assets/10df32e4-92a4-43a6-bc4b-a7827263dcca)
+      ![B1_sem_IA_aproximada](https://github.com/user-attachments/assets/10df32e4-92a4-43a6-bc4b-a7827263dcca)
   
    - B2
   
