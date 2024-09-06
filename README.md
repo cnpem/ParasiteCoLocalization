@@ -20,10 +20,17 @@ Desenvolver protocolos de processamento de imagens de microscopia ótica de cél
 
 ###Viabilidade Celular
 
-Nesse caso o objetivo era seguimentar os nucleos da celulas vero para medir a viabilidade celular do experimento
+Nesse caso o objetivo era seguimentar os nucleos da celulas vero para medir a viabilidade celular do experimento tendo assim os seguintes resultados:
+
+Tratamento classico:
 
 ![A24_sem_IA](https://github.com/user-attachments/assets/8140a827-dde4-47fe-818f-12b94d0ee1df)
-essa imagem corresponde a um dos poços de controle desse enssaio sendo esse em questão o poço A24
+
+Essa imagem corresponde a um dos poços de controle desse enssaio sendo esse em questão o poço A24 nela podemos ver a seguimentação dos nucleos.Logo a baicho temos uma aproximação de uma das areas de maior dificulde pelo aglomerado de varias células.
+
+![A24_sem_IA_aproximação](https://github.com/user-attachments/assets/6744f75a-b712-403e-bcff-ab20f606a861)
+
+
 
 
 
