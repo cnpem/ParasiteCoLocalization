@@ -9,10 +9,10 @@
 \usepackage{lipsum} % Comment me
 
 % English language hyphenation
-\usepackage[english]{babel} 
+\usepackage[english]{babel}
 
 % Math packages
-\usepackage{amsmath, amsfonts, amsthm} 
+\usepackage{amsmath, amsfonts, amsthm}
 
 % Indent first paragraph
 \usepackage{indentfirst}
@@ -34,6 +34,12 @@
 
 % Chemical formulas package
 \usepackage{chemformula}
+
+% Filesystem
+\usepackage{forest}
+
+% Minted package for syntax highlighting
+\usepackage{minted}
 
 % Table 
 \usepackage[toc]{appendix}
@@ -67,17 +73,19 @@
 }
 % PDF metadata
 \hypersetup{
-  pdftitle     = {title}, % CHANGE
-  pdfauthor    = {authors}, % CHANGE
+  pdftitle     = {Guia do usuário: Co-localização de parasitas de Chagas em
+      células musculares cardíacas},
+  pdfauthor    = {Patrick. H. F. Alvares, João V. S. Guerra, José G. C.
+      Pereira},
   pdfproducer  = {Latex with hyperref},
   pdfcreator   = {pdflatex}
 }
 
 % Bibliography
 \usepackage[
-    backend=biber, 
-    style=ieee, 
-    natbib=true,
+  backend=biber,
+  style=ieee,
+  natbib=true,
 ]{biblatex}
 \addbibresource{\jobname.bib}
 
@@ -94,12 +102,12 @@
 
 \usepackage{geometry} % Required for adjusting page dimensions and margins
 \geometry{
-    paper=a4paper,
-    top=30mm, % Top margin
-    bottom=20mm, % Bottom margin
-    left=30mm, % Left margin
-    right=20mm, % Right margin
-    % showframe, % Uncomment to show how the type block is set on the page
+  paper=a4paper,
+  top=30mm, % Top margin
+  bottom=20mm, % Bottom margin
+  left=30mm, % Left margin
+  right=20mm, % Right margin
+  % showframe, % Uncomment to show how the type block is set on the page
 }
 
 %----------------------------------------------------------------------------------------
@@ -116,98 +124,199 @@
 
 % Title Page
 \long\def\reporttitle{%
-    \begin{titlepage}
-        % Logo
-        \begin{center}
-            \begin{minipage}{0.9\textwidth}%
-            \includegraphics[width=\textwidth]{lnbio-cnpem-logo.png}%
-            \end{minipage}
-        \end{center}
-        \vskip 0.5em
-        
-        % Title
-        {\centering \LARGE Title \par} % CHANGE
-        \vskip 1em
+  \begin{titlepage}
+    % Logo
+    \begin{center}
+      \begin{minipage}{0.9\textwidth}%
 
-        % Author
-        {\centering \large Authors \par} % CHANGE
-        \vskip 1em
+        \includegraphics[width=\textwidth]{lnbio-cnpem-logo.png}%
+      \end{minipage}
+    \end{center}
+    \vskip 0.5em
 
-        % Date
-        {\centering \large \today\par}
-        \vskip 0.5em
+    % Horizontal line
+    \hline
+    \vskip 1em
 
-        % Horizontal line
-        \hline 
+      % Title
+      {\centering \LARGE Guia do usuário: Co-localização de parasitas de
+        Chagas em células musculares cardíacas \par}
+    \vskip 1em
 
-        % Do not break page
-        \let\endtitlepage\relax
-    \end{titlepage}
+      % Author
+      {\centering \large Patrick. H. F. Alvares, João V. S. Guerra, José G.
+        C. Pereira \par} % CHANGE
+    \vskip 1em
+
+      % Date
+      {\centering \large \today\par}
+    \vskip 0.5em
+
+    % Horizontal line
+    \hline
+
+    % Do not break page
+    \let\endtitlepage\relax
+  \end{titlepage}
 }
 
 \begin{document}
 
 % Make title
 \reporttitle
+\break
 
 % Table of Contents
+\hline
 \tableofcontents
 \vskip 0.5em
-\hline 
+\hline
+\break 
 
-\section{Section 1}
+\section{Introdução}
 
-\lipsum[1]
+Este guia do usuário fornece instruções detalhadas sobre como executar a análise de co-localização de parasitas de Chagas em células musculares cardíacas. O objetivo deste guia é auxiliar os usuários a configurar e executar o pipeline de análise, bem como a interpretar os resultados obtidos.
 
-\section{Section 2}
+\section{Requisitos}
 
-\lipsum[2-4]
+Para executar a análise de co-localização de parasitas de Chagas em células musculares cardíacas, você precisará dos seguintes requisitos:
 
-\section{Section 3}
+\begin{itemize}
+  \item \textbf{Acesso ao GitHub do CNPEM}: Você deve ter acesso ao repositório do projeto (\url{https://github.com/cnpem/ParasiteCoLocalization}) no GitHub do CNPEM (\url{https://github.com/cnpem/}) para baixar os arquivos necessários. Se não tiver acesso, entre em contato com a Equipe de Dados Biológicos (\url{edb@lnbio.cnpem.br}).
+  \item \textbf{Acesso ao HPC Marvin}: Você deve ter acesso ao HPC Marvin para executar o pipeline de análise. Se você não tiver acesso, acesse \url{https://marvindocs.cnpem.br/primeiros-passos/index.html}.
+\end{itemize}
 
-\lipsum[5]
+\section{Acessando o HPCC Marvin}
 
-\section{Glossary}
+Para acessar o HPCC Marvin, comece abrindo o terminal. Se estiver usando Windows, abra o PowerShell; se estiver usando Linux ou MacOS, abra o terminal Terminal. Para acessar o HPCC Marvin, use o comando:
+
+\begin{minted}[frame=single, bgcolor=lightgray, fontsize=\small]{bash}
+ssh <seu.login.cnpem>@marvin.cnpem.br
+\end{minted}
+
+Após inserir o comando, será solicitado que você insira sua senha, digite sua senha institucional.
+
+\section{Clonando o Repositório ParasiteCoLocalization}
+
+Para clonar o repositório \href{https://github.com/cnpem/ParasiteCoLocalization}{ParasiteCoLocalization}, execute o seguinte comando no terminal:
+
+\begin{minted}[frame=single, bgcolor=lightgray, fontsize=\small]{bash}
+git clone https://github.com/cnpem/ParasiteCoLocalization.git
+\end{minted}
+
+O comando acima cria uma pasta chamada \texttt{ParasiteCoLocalization} no diretório atual. Esta pasta contém todos os arquivos necessários para a execução da análise de co-localização de parasitas de Chagas em células musculares cardíacas, incluindo o script \texttt{run.sh}, que automatiza a execução da análise via SLURM.
+
+\subsection{Organização do repositório \texttt{ParasiteCoLocalization}}
+
+A estrutura de diretórios do projeto é apresentada na árvore de arquivos a seguir:
+
+\begin{forest}
+  for tree={
+  font=\ttfamily,
+  grow'=0,
+  child anchor=west,
+  parent anchor=south,
+  anchor=west,
+  calign=first,
+  edge path={%
+      \noexpand\path [draw, thick, \forestoption{edge}]
+      (!u.south west) |- (.child anchor)\forestoption{edge label};
+    },
+  before typesetting nodes={
+      if n=1
+        {insert before={[, phantom]}}
+        {}
+    },
+  fit=band,
+  before computing xy={l=15pt},
+  }
+  [./ParasiteCoLocalization/
+  [benchmarking]
+  [data/]
+  [docs/]
+  ]
+\end{forest}
+
+\section{Enviando Imagens para o HPC Marvin}
+
+Para enviar as imagens para o HPC Marvin, você pode usar o comando \texttt{scp} no terminal. O comando \texttt{scp} permite copiar arquivos de e para servidores remotos de forma segura.
+
+## Preencher
+
+Para enviar um arquivo para o HPC Marvin, use o seguinte comando:
+
+## Preencher
+
+\section{Executando o Pipeline no HPC Marvin}
+
+Após enviar as imagens para o HPC Marvin, você pode executar o pipeline de análise de co-localização de parasitas de Chagas em células musculares cardíacas. O script \texttt{run.sh} executa o pipeline de análise via SLURM, que é o sistema de gerenciamento de tarefas usado no HPC Marvin. Para isso, execute o script \texttt{run.sh} no diretório \texttt{ParasiteCoLocalization}.
+
+\begin{minted}[frame=single, bgcolor=lightgray, fontsize=\small]{bash}
+cd ParasiteCoLocalization
+sbatch run.sh -m marvin
+\end{minted}
+
+O comando acima retorna o ID do job SLURM, que você pode usar para monitorar o progresso da análise.
+
+\subsection{Monitoramento do Job SLURM}
+
+Para monitorar o progresso do job SLURM, você pode usar o comando \texttt{squeue} no terminal. O comando \texttt{squeue} exibe informações sobre os jobs SLURM em execução no HPC Marvin.
+
+\begin{minted}[frame=single, bgcolor=lightgray, fontsize=\small]{bash}
+squeue -u <seu.login.cnpem>
+\end{minted}
+
+Se o job estiver em execução, o estado será exibido como R (em execução). Se o job estiver aguardando na fila, o estado será PD (pendente).
+
+Caso deseje cancelar o job SLURM, você pode usar o comando \texttt{scancel} no terminal. O comando \texttt{scancel} cancela um job SLURM em execução no HPC Marvin.
+
+\begin{minted}[frame=single, bgcolor=lightgray, fontsize=\small]{bash}
+scancel <job_id>
+\end{minted}
+
+Por fim, você pode verificar o arquivo de log gerado pelo SLURM (\texttt{slurm\_<job\_id>.out}) para obter informações sobre o seu job.
+
+\section{Glossário}
 
 Here is an \ac{Ex} of acronym usage.
 
 \begin{acronym} \itemsep=-8pt
-    \acro{Ex}[Ex]{Example}
+  \acro{Ex}[Ex]{Example}
 \end{acronym}
 
 \printbibliography
 
-\appendix
+% \appendix
 
-\break \section{Supplementary Information}
+% \break \section{Supplementary Information}
 
-\renewcommand{\thefigure}{S\arabic{figure}}
-\setcounter{figure}{0}
-\renewcommand{\thetable}{S\arabic{table}}
-\setcounter{table}{0}
+% \renewcommand{\thefigure}{S\arabic{figure}}
+% \setcounter{figure}{0}
+% \renewcommand{\thetable}{S\arabic{table}}
+% \setcounter{table}{0}
 
-\begin{table}[H]
-    \begin{center}
-        \begin{tabular}{|c|c|}
-            \hline
-            a & b \\\hline
-            c & d \\\hline
-        \end{tabular}
-    \end{center}
-    \caption[Shorter table caption]{Table caption caption caption caption
-        caption caption caption caption caption caption caption caption caption
-        caption caption caption caption caption caption caption caption caption
-        caption caption.}
-    \label{t:label0}
-\end{table}
+% \begin{table}[H]
+%     \begin{center}
+%         \begin{tabular}{|c|c|}
+%             \hline
+%             a & b \\\hline
+%             c & d \\\hline
+%         \end{tabular}
+%     \end{center}
+%     \caption[Shorter table caption]{Table caption caption caption caption
+%         caption caption caption caption caption caption caption caption caption
+%         caption caption caption caption caption caption caption caption caption
+%         caption caption.}
+%     \label{t:label0}
+% \end{table}
 
-\begin{figure}[H]
-\centerline{\includegraphics[scale=0.2]{lnbio-cnpem-logo.png}}
-\caption[Shorter figure caption]{Figure Caption caption caption caption
-  caption caption caption caption caption caption caption caption caption
-  caption caption caption caption caption caption caption caption caption
-  caption caption.}
-\label{f:label1}
-\end{figure}
+% \begin{figure}[H]
+% \centerline{\includegraphics[scale=0.2]{lnbio-cnpem-logo.png}}
+% \caption[Shorter figure caption]{Figure Caption caption caption caption
+%   caption caption caption caption caption caption caption caption caption
+%   caption caption caption caption caption caption caption caption caption
+%   caption caption.}
+% \label{f:label1}
+% \end{figure}
 
 \end{document}

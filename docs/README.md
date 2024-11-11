@@ -8,9 +8,9 @@ To install the dependencies, run:
 sudo apt-get install texlive-base texlive-latex-recommended texlive-latex-extra texlive-science texlive-font-utils texlive-lang-spanish texlive-publishers texlive-pictures abntex biber
 ```
 
-## Building the report
+## Building the user guide
 
-To generate the report, run:
+To generate the user guide, run:
 
 ```bash
 make build
