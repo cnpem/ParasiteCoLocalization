@@ -30,7 +30,7 @@ bash run.sh -m marvin
 
 The output will be saved in the `results` directory and will include the following files:
 
-```plaintext
+```bash
 results/
 ├── summary.csv # Summary of the number of cells, parasites, infected rate, and median number of parasites per infected cell per well
 └── visualization/
