@@ -1,5 +1,5 @@
 #!/bin/sh
-#SBATCH --job-name=spots_analysis
+#SBATCH --job-name=parasite_colocalization
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=4
 #SBATCH --partition=short-gpu-small
@@ -30,10 +30,10 @@ done
 # Process plate
 if [ "$mode" = "marvin" ]; then
         echo "[==> Processing plate on HPC Marvin"
-        singularity run --nv /opt/images/cellprofiler/cellprofiler-4_2_6.sif -c -r -p spots_analysis.cppipe -i data -o results --images-per-batch=12
+        singularity run --nv /opt/images/cellprofiler/cellprofiler-4_2_6.sif -c -r -p parasitecolocalization.cppipe -i data -o results --images-per-batch=12
 elif [ "$mode" = "local" ]; then
         echo "[==> Processing plate on local machine"
-        cellprofiler -c -r -p spots_analysis.cppipe -i data -o results --images-per-batch=12 --plugins-directory=${plugins_directory}
+        cellprofiler -c -r -p parasitecolocalization.cppipe -i data -o results --images-per-batch=12 --plugins-directory=${plugins_directory}
 else
         echo "Mode not specified or invalid. Use -m marvin or -m local."
         exit 1
