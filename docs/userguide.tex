@@ -1,0 +1,213 @@
+% !BIB program = biber 
+\documentclass{article}
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+% Generate dummy text (lorem ipsum) in your document
+\usepackage{lipsum} % Comment me
+
+% English language hyphenation
+\usepackage[english]{babel} 
+
+% Math packages
+\usepackage{amsmath, amsfonts, amsthm} 
+
+% Indent first paragraph
+\usepackage{indentfirst}
+
+% Figures
+\usepackage{float}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+
+% Captions
+\usepackage{caption}
+\usepackage{subcaption}
+
+% Context sensitive quotation facilities
+\usepackage{csquotes}
+
+% Enumerate
+\usepackage{enumitem}
+
+% Chemical formulas package
+\usepackage{chemformula}
+
+% Table 
+\usepackage[toc]{appendix}
+\addto\captionsenglish{% Replace "english" with the language you use
+  \renewcommand{\contentsname}{Table of Contents}
+}
+
+% Shorthands
+\usepackage{xspace}
+\makeatletter
+\DeclareRobustCommand\onedot{\futurelet\@let@token\@onedot}
+\def\@onedot{\ifx\@let@token.\else.\null\fi\xspace}
+
+\def\eg{e.g\onedot} \def\Eg{E.g\onedot}
+\def\ie{i.e\onedot} \def\Ie{I.e\onedot}
+\def\cf{cf\onedot} \def\Cf{Cf\onedot}
+\def\etc{etc\onedot} \def\vs{vs\onedot}
+\def\wrt{w.r.t\onedot} \def\dof{d.o.f\onedot}
+\def\etal{et al.\onedot}
+\makeatother
+
+% Hyperlinks styling
+\usepackage{hyperref}
+% Hyperlink setup
+\hypersetup{
+  colorlinks   = true, % Colours links instead of ugly boxes
+  urlcolor     = blue, % Colour for external hyperlinks
+  linkcolor    = blue, % Colour of internal links
+  citecolor    = blue, % Colour of citations
+  linktocpage  = true, % Link only on page numbers
+}
+% PDF metadata
+\hypersetup{
+  pdftitle     = {title}, % CHANGE
+  pdfauthor    = {authors}, % CHANGE
+  pdfproducer  = {Latex with hyperref},
+  pdfcreator   = {pdflatex}
+}
+
+% Bibliography
+\usepackage[
+    backend=biber, 
+    style=ieee, 
+    natbib=true,
+]{biblatex}
+\addbibresource{\jobname.bib}
+
+% Acronyms
+\usepackage[
+  printonlyused,
+  nohyperlinks,
+  withpage,
+]{acronym}
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT MARGINS
+%----------------------------------------------------------------------------------------
+
+\usepackage{geometry} % Required for adjusting page dimensions and margins
+\geometry{
+    paper=a4paper,
+    top=30mm, % Top margin
+    bottom=20mm, % Bottom margin
+    left=30mm, % Left margin
+    right=20mm, % Right margin
+    % showframe, % Uncomment to show how the type block is set on the page
+}
+
+%----------------------------------------------------------------------------------------
+%	FONTS
+%----------------------------------------------------------------------------------------
+
+% Required for inputting international characters
+\usepackage[T1]{fontenc}
+% Use 8-bit encoding
+\usepackage[latin1,utf8]{inputenc}
+
+% Fonts
+\usepackage{lmodern}
+
+% Title Page
+\long\def\reporttitle{%
+    \begin{titlepage}
+        % Logo
+        \begin{center}
+            \begin{minipage}{0.9\textwidth}%
+            \includegraphics[width=\textwidth]{lnbio-cnpem-logo.png}%
+            \end{minipage}
+        \end{center}
+        \vskip 0.5em
+        
+        % Title
+        {\centering \LARGE Title \par} % CHANGE
+        \vskip 1em
+
+        % Author
+        {\centering \large Authors \par} % CHANGE
+        \vskip 1em
+
+        % Date
+        {\centering \large \today\par}
+        \vskip 0.5em
+
+        % Horizontal line
+        \hline 
+
+        % Do not break page
+        \let\endtitlepage\relax
+    \end{titlepage}
+}
+
+\begin{document}
+
+% Make title
+\reporttitle
+
+% Table of Contents
+\tableofcontents
+\vskip 0.5em
+\hline 
+
+\section{Section 1}
+
+\lipsum[1]
+
+\section{Section 2}
+
+\lipsum[2-4]
+
+\section{Section 3}
+
+\lipsum[5]
+
+\section{Glossary}
+
+Here is an \ac{Ex} of acronym usage.
+
+\begin{acronym} \itemsep=-8pt
+    \acro{Ex}[Ex]{Example}
+\end{acronym}
+
+\printbibliography
+
+\appendix
+
+\break \section{Supplementary Information}
+
+\renewcommand{\thefigure}{S\arabic{figure}}
+\setcounter{figure}{0}
+\renewcommand{\thetable}{S\arabic{table}}
+\setcounter{table}{0}
+
+\begin{table}[H]
+    \begin{center}
+        \begin{tabular}{|c|c|}
+            \hline
+            a & b \\\hline
+            c & d \\\hline
+        \end{tabular}
+    \end{center}
+    \caption[Shorter table caption]{Table caption caption caption caption
+        caption caption caption caption caption caption caption caption caption
+        caption caption caption caption caption caption caption caption caption
+        caption caption.}
+    \label{t:label0}
+\end{table}
+
+\begin{figure}[H]
+\centerline{\includegraphics[scale=0.2]{lnbio-cnpem-logo.png}}
+\caption[Shorter figure caption]{Figure Caption caption caption caption
+  caption caption caption caption caption caption caption caption caption
+  caption caption caption caption caption caption caption caption caption
+  caption caption.}
+\label{f:label1}
+\end{figure}
+
+\end{document}
