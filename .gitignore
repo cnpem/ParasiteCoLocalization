@@ -1,3 +1,11 @@
+# Ignore everything in this directory
+data/*tif
+results/
+
+# Except these file patterns
+!data/001001-*.tif
+!data/001002-*.tif
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
