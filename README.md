@@ -1,10 +1,10 @@
 # Parasite Co-localization
 
-This repository contains the source code for analyzing Chagas pathogen co-localization in microscopy images.
+This repository contains the source code for analyzing Chagas parasite co-localization in microscopy images.
 
 ## Images
 
-The images were generated from a high-content screening (HCS) assay of embryonic mouse cardiac cells (H9C2 cell line), infected with the amastigote form of *Trypanosoma cruzi* (strain Dm28c). The cells were treated with a library of compounds at different concentrations, using DMSO as a negative control. The cell and pathogen nuclei were stained with Hoechst, and the images were acquired using the Operetta HCS (Perkin Elmer) at LNBio.
+The images were generated from a high-content screening (HCS) assay of embryonic mouse cardiac cells (H9C2 cell line), infected with the amastigote form of *Trypanosoma cruzi* (strain Dm28c). The cells were treated with a library of compounds at different concentrations, using DMSO as a negative control. The cell and parasite nuclei were stained with Hoechst, and the images were acquired using the Operetta HCS (Perkin Elmer) at LNBio.
 
 ## Analysis
 
