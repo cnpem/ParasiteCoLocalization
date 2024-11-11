@@ -21,16 +21,20 @@ To run the pipeline, follow the instructions below:
 bash run.sh -m local -p /path/to/CellProfiler-plugins/active_plugins
 ```
 
-or 
+or
 
 ```bash
 # Running on HPC marvin machine
 bash run.sh -m marvin
 ```
 
-The output will be saved in the `results` directory, containing the following files:
+The output will be saved in the `results` directory and will include the following files:
 
-- `summary.csv`: [...]
+- `summary.csv`: Contains a summary of the number of cells, parasites, infected cells, and the percentage of infected cells per well.
+- `visualization/number_of_cells.html`: Interactive visualization of the number of cells per well.
+- `visualization/number_of_spots.html`: Interactive visualization of the number of parasites per well.
+- `visualization/number_of_infected_cells.html`: Interactive visualization of the number of infected cells per well.
+- `visualization/median_spots_per_infected_cell.html`: Interactive visualization of the median number of parasites per infected cell per well.
 
 ### Authors
 
