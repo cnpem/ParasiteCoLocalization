@@ -33,11 +33,11 @@ The output will be saved in the `results` directory and will include the followi
 ```bash
 results/
 ├── summary.csv # Summary of the number of cells, parasites, infected cells, and the percentage of infected cells per well
-├── visualization/
-│   ├── number_of_cells.html # Interactive visualization of the number of cells per well
-│   ├── number_of_spots.html # Interactive visualization of the number of parasites per well
-│   ├── number_of_infected_cells.html # Interactive visualization of the number of infected cells per well
-│   └── median_spots_per_infected_cell.html # Interactive visualization of the median number of parasites per infected cell per well
+└── visualization/
+    ├── number_of_cells.html # Interactive visualization of the number of cells per well
+    ├── number_of_spots.html # Interactive visualization of the number of parasites per well
+    ├── number_of_infected_cells.html # Interactive visualization of the number of infected cells per well
+    └── median_spots_per_infected_cell.html # Interactive visualization of the median number of parasites per infected cell per well
 ```
 
 ### Authors
