@@ -162,6 +162,51 @@ def _plot_plate_map(
     fig.write_html(output_filepath)
 
 
+def _plot_scatter_plot(
+    summary: pandas.DataFrame, x: str, y: str, title: str, output_filepath: str
+) -> None:
+    """
+    Plot a scatter plot of the results from both software tools.
+
+    Parameters
+    ----------
+    summary : pandas.DataFrame
+        Summary table with the results of the analysis.
+    x : str
+        Name of the column for the x-axis.
+    y : str
+        Name of the column for the y-axis.
+    title : str
+        Title of the plot.
+    output_filepath : str
+        Path to the output file.
+    """
+    # Create the scatter plot
+    fig = px.scatter(
+        summary,
+        x=x,
+        y=y,
+        labels={x: title.split(" vs. ")[1], y: title.split(" vs. ")[0]},
+        hover_name=summary.index,
+        hover_data={x: ":.1f", y: ":.1f"},
+        marginal_x="histogram",
+        marginal_y="histogram",
+        trendline="ols",
+        height=1200,
+        width=1200,
+    )
+
+    # Update the layout
+    fig.update(
+        layout=dict(
+            title={"text": f"{title}", "x": 0.5},
+        )
+    )
+
+    # Save the plot to a HTML file
+    fig.write_html(output_filepath)
+
+
 def run(results_directory: str, image_filepath: str, cell_filepath: str) -> None:
     """
     Run the post-processing analysis on the results of the parasite
@@ -179,15 +224,15 @@ def run(results_directory: str, image_filepath: str, cell_filepath: str) -> None
     # Summarize the results
     summary = summarize(results_directory, image_filepath, cell_filepath)
 
-    # Create the visualization directory
-    os.makedirs(os.path.join(results_directory, "visualization"), exist_ok=True)
+    # Create the plate_map directory
+    os.makedirs(os.path.join(results_directory, "plate_map"), exist_ok=True)
 
     # Plot plate map with number of cells
     _plot_plate_map(
         summary=summary,
         column="TotalCells",
         title="Number of Cells",
-        output_filepath="results/visualization/number_of_cells.html",
+        output_filepath="results/plate_map/number_of_cells.html",
     )
 
     # Plot plate map with number of spots
@@ -195,7 +240,7 @@ def run(results_directory: str, image_filepath: str, cell_filepath: str) -> None
         summary=summary,
         column="TotalSpots",
         title="Number of Spots",
-        output_filepath="results/visualization/number_of_spots.html",
+        output_filepath="results/plate_map/number_of_spots.html",
     )
 
     # Plot plate map with infection rate
@@ -203,15 +248,46 @@ def run(results_directory: str, image_filepath: str, cell_filepath: str) -> None
         summary=summary,
         column="InfectionRate",
         title="Infection Rate (%)",
-        output_filepath="results/visualization/infection_rate.html",
+        output_filepath="results/plate_map/infection_rate.html",
     )
 
-    # Plot plate map with median number of spots per infected cell
-    _plot_plate_map(
+    # Create the scatter directory
+    os.makedirs(os.path.join(results_directory, "scatter"), exist_ok=True)
+
+    # Plot scatter plot for number of infected cells vs number of cells
+    _plot_scatter_plot(
         summary=summary,
-        column="MedianSpotsPerInfectedCell",
-        title="Median Spots per Infected Cell",
-        output_filepath="results/visualization/median_spots_per_infected_cell.html",
+        x="TotalCells",
+        y="InfectedCells",
+        title="Number of Infected Cells vs. Number of Cells",
+        output_filepath="results/scatter/number_of_cells_vs_number_of_infected_cells.html",
+    )
+
+    # Plot scatter plot for infection rate vs number of cells
+    _plot_scatter_plot(
+        summary=summary,
+        x="TotalCells",
+        y="InfectionRate",
+        title="Infection Rate (%) vs. Number of Cells",
+        output_filepath="results/scatter/number_of_cells_vs_infection_rate.html",
+    )
+
+    # Plot scatter plot for median spots per infected cell vs number of cells
+    _plot_scatter_plot(
+        summary=summary,
+        x="TotalCells",
+        y="MedianSpotsPerInfectedCell",
+        title="Median Spots per Infected Cell vs. Number of Cells",
+        output_filepath="results/scatter/median_spots_per_infected_cell_vs_number_of_cells.html",
+    )
+
+    # Plot scatter plot for median spots per infected cell vs infection rate
+    _plot_scatter_plot(
+        summary=summary,
+        x="InfectionRate",
+        y="MedianSpotsPerInfectedCell",
+        title="Median Spots per Infected Cell vs. Infection Rate (%)",
+        output_filepath="results/scatter/median_spots_per_infected_cell_vs_infection_rate.html",
     )
 
 
