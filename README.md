@@ -10,7 +10,7 @@ The images were generated from a high-content screening (HCS) assay of embryonic
 
 The images were processed using open-source tools, such as CellProfiler, for image processing analysis, and then data mined in Python for quantitative analysis. The custom CellProfiler pipeline included pre-processing, segmentation of nuclei, cytoplasm, and parasites, and calculation of metrics (number of parasites per cell and number of infected cells).
 
-To run the pipeline, follow the instructions below:
+To run the pipeline, follow these steps:
 
 1. Install [CellProfiler](https://cellprofiler.org/releases/) and the required [plugins](https://github.com/cnpem/lnbio-bioimage-analysis/blob/main/cellprofiler/INSTALLATION.md#cellprofiler-plugins).
 
@@ -61,7 +61,7 @@ The comparison was performed quantitatively by comparing the scatter plots of th
 - CellProfiler Results: [summary.csv](https://github.com/cnpem/ParasiteCoLocalization/blob/main/benchmarking/CellProfiler/summary.csv)
 - Columbus Results: [summary.txt](https://github.com/cnpem/ParasiteCoLocalization/blob/main/benchmarking/Columbus/summary.txt)
 
-To reproduce the benchmarking analysis, run in `becnhmarking` directory:
+To reproduce the benchmarking analysis, run in the `benchmarking` directory:
 
 ```bash
 python benchmarking.py
@@ -71,7 +71,7 @@ The output will be saved in the `comparison` directory and will include the foll
 
 ```bash
 benchmarking/
-└──comparison/
+└── comparison/
     ├── number_of_cells.html # Scatter plot comparing the number of cells per well
     ├── infection_rate.html # Scatter plot comparing the infection rate per well
     └── median_spots_per_infected_cell.html # Scatter plot comparing the median number of parasites per infected cell per well
