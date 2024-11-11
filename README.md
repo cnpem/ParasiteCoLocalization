@@ -1,21 +1,47 @@
-# ILUM - IP3 2024.2 (Proposta 20241479)
+# Parasite Co-localization
 
-Projeto de Introdução a Pesquisa III (2024.2): Implementação de rotinas para processamento de imagens de microscopia ótica
+This repository contains the source code for analyzing Chagas pathogen co-localization in microscopy images.
 
-## Introdução e motivação
+## Images
 
-O Laboratório Nacional de Biociências (LNBio) do Centro Nacional de Pesquisa em Energia e Materiais (CNPEM) requer computação de alto desempenho para processamento e análise de imagens geradas por microscopia. Uma das demandas de processamento computacional é a análise de experimentos de triagem biológica automatizada em alta escala (do inglês, High-Throughput Screening; HTS) para a busca de novos fármacos.
+The images were generated from a high-content screening (HCS) assay of embryonic mouse cardiac cells (H9C2 cell line), infected with the amastigote form of *Trypanosoma cruzi* (strain Dm28c). The cells were treated with a library of compounds at different concentrations, using DMSO as a negative control. The cell and pathogen nuclei were stained with Hoechst, and the images were acquired using the Operetta HCS (Perkin Elmer) at LNBio.
 
-O equipamento Operetta da Perkin Elmer, sob responsabilidade da Facility de Bioensaios, captura imagens para triagem de alvos, vias ou eventos celulares expostos a uma biblioteca de compostos em diferentes concentrações em placa de múltiplos poços. Estas placas são submetidas à radiação eletromagnética com comprimentos de ondas específicos, captando as características da estrutura celular e dos patógenos em cada poço em imagens. Devido à complexidade e volume de dados, a análise manual é extremamente laboriosa, sendo necessárias rotinas (semi-)automatizadas para avaliação das características morfológicas da estrutura celular e dos patógenos.
+## Analysis
 
-Atualmente, a infraestrutura de armazenamento e processamento de imagens biológicas está sendo migrada do servidor Columbus da Perkin Elmer para o cluster de computação de alto desempenho (do inglês, High Performance Computing; HPC) Marvin (https://marvin.cnpem.br), hospedado no Data Center do SIRIUS/LNLS. O banco de dados de imagens foi transferido do servidor Columbus para o OMERO (www.openmicroscopy.org/omero/), hospedado no HPC Marvin. No entanto, os protocolos de processamento e análise das imagens biológicas ainda estão limitados aos protocolos do servidor Columbus. 
+The images were processed using open-source tools, such as CellProfiler, for image processing analysis, and then data mined in Python for quantitative analysis. The custom CellProfiler pipeline included pre-processing, segmentation of nuclei, cytoplasm, and parasites, and calculation of metrics (number of parasites per cell and number of infected cells).
 
-A partir do OMERO e da capacidade de processamento do HPC Marvin, as tarefas de processamento e análise serão atendidas por protocolos construídos a partir de programas de código livre e aberto, como o Cellprofiler (https://cellprofiler.org/) e o Fiji (https://fiji.sc/), que executam algoritmos de visão computacional e também adotam métodos de aprendizado de máquina para segmentação e classificação de estruturas celulares, como citoesqueleto e núcleo.
+To run the pipeline, follow the instructions below:
 
-## Objetivos
+1. Install [CellProfiler](https://cellprofiler.org/releases/) and the required [plugins](https://github.com/cnpem/lnbio-bioimage-analysis/blob/main/cellprofiler/INSTALLATION.md#cellprofiler-plugins).
 
-Desenvolver protocolos de processamento de imagens de microscopia ótica de células para experimentos HTS, construídos a partir de programas de código livre e aberto, e aproveitando o poder computacional da infraestrutura do HPC Marvin.
+2. Run the pipeline and data mining using the `run.sh` script:
 
+```bash
+# Running on local machine
+bash run.sh -m local -p /path/to/CellProfiler-plugins/active_plugins
+```
 
+or
 
+```bash
+# Running on HPC marvin machine
+bash run.sh -m marvin
+```
 
+The output will be saved in the `results` directory and will include the following files:
+
+- `summary.csv`: Contains a summary of the number of cells, parasites, infected cells, and the percentage of infected cells per well.
+- `visualization/number_of_cells.html`: Interactive visualization of the number of cells per well.
+- `visualization/number_of_spots.html`: Interactive visualization of the number of parasites per well.
+- `visualization/number_of_infected_cells.html`: Interactive visualization of the number of infected cells per well.
+- `visualization/median_spots_per_infected_cell.html`: Interactive visualization of the median number of parasites per infected cell per well.
+
+### Authors
+
+- [Patrick H. F. Alvares](https://github.com/PatrickHFA)
+- [João V. S. Guerra](https://github.com/jvsguerra)
+- [José G. C. Pereira](https://github.com/zgcarvalho)
+
+## License
+
+This software is licensed under the terms of the GNU General Public License version 3 (GPL3) and is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
