@@ -41,4 +41,4 @@ fi
 
 # Data mining
 echo "[==> Data mining"
-python postprocess.py
+# python postprocessing.py
