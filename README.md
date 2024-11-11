@@ -32,19 +32,18 @@ The output will be saved in the `results` directory and will include the followi
 
 ```bash
 results/
-├── summary.csv # Summary of the number of cells, parasites, infected rate, and median number of parasites per infected cell per well
+├── summary.csv # Summary of the number of cells, parasites, infection rate, and median number of parasites per infected cell per well
 ├── plate_map/
 │   ├── number_of_cells.html # Interactive visualization of the number of cells per well
 │   ├── number_of_spots.html # Interactive visualization of the number of parasites per well
 │   ├── infection_rate.html # Interactive visualization of the infection rate per well
 │   ├── number_of_infected_cells.html # Interactive visualization of the number of infected cells per well
 │   └── median_spots_per_infected_cell.html # Interactive visualization of the median number of parasites per infected cell per well
-└── scatter_plots/
-    ├── number_of_cells.html # Scatter plot comparing the number of cells per well
-    ├── number_of_spots.html # Scatter plot comparing the number of parasites per well
-    ├── infection_rate.html # Scatter plot comparing the infection rate per well
-    ├── number_of_infected_cells.html # Scatter plot comparing the number of infected cells per well
-    └── median_spots_per_infected_cell.html # Scatter plot comparing the median number of parasites per infected cell per well
+└── scatter/
+    ├── number_of_infected_cells_vs_number_of_cells.html # Scatter plot comparing the number of cells and infected cells per well
+    ├── infection_rate_vs_number_of_cells.html # Scatter plot comparing the number of cells and infection rate per well
+    ├── median_spots_per_infected_cell_vs_number_of_cells.html # Scatter plot comparing the number of cells and median number of parasites per infected cell per well
+    └── median_spots_per_infected_cell_vs_infection_rate.html # Scatter plot comparing the infection rate and number of infected cells per well
 ```
 
 ### Authors
