@@ -208,6 +208,12 @@ O comando acima cria uma pasta chamada \texttt{ParasiteCoLocalization} no diret�
 
 \subsection{Organização do repositório \texttt{ParasiteCoLocalization}}
 
+Após clonar o repositório \texttt{ParasiteCoLocalization}, acesse o diretório do projeto com o comando:
+
+\begin{minted}[frame=single, bgcolor=lightgray, fontsize=\small]{bash}
+cd ParasiteCoLocalization
+\end{minted}
+
 A estrutura de diretórios do projeto é apresentada na árvore de arquivos a seguir:
 
 \begin{forest}
@@ -236,6 +242,44 @@ A estrutura de diretórios do projeto é apresentada na árvore de arquivos a se
   [docs/]
   ]
 \end{forest}
+
+\subsection{Instalando PyEnv no HPCC Marvin}
+
+O PyEnv é uma ferramenta que permite instalar e gerenciar várias versões do Python em um ambiente virtual. Para instalar o PyEnv no HPCC Marvin, execute os seguintes comandos no terminal:
+
+\begin{minted}[frame=single, bgcolor=lightgray, fontsize=\small]{bash}
+curl https://pyenv.run | bash
+echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.bashrc
+echo 'eval "$(pyenv init -)"' >> ~/.bashrc
+echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bashrc
+source ~/.bashrc
+\end{minted}
+
+Para instalar uma versão específica do Python, execute o seguinte comando:
+
+\begin{minted}[frame=single, bgcolor=lightgray, fontsize=\small]{bash}
+pyenv install 3.8.19
+\end{minted}
+
+Para definir a versão do Python como padrão, execute o seguinte comando:
+
+\begin{minted}[frame=single, bgcolor=lightgray, fontsize=\small]{bash}
+pyenv local 3.8.19
+\end{minted}
+
+Caso deseje utilizar outra versão do Python, você pode selecionar a versão desejada para a sessão atual com o comando:
+
+\begin{minted}[frame=single, bgcolor=lightgray, fontsize=\small]{bash}
+pyenv shell <versão_desejada>
+\end{minted}
+
+\section{Instalando as Dependências do Projeto}
+
+Para instalar as dependências do projeto, execute o seguinte comando no terminal:
+
+\begin{minted}[frame=single, bgcolor=lightgray, fontsize=\small]{bash}
+pip install -r requirements.txt
+\end{minted}
 
 \section{Enviando Imagens para o HPC Marvin}
 
