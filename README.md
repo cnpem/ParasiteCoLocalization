@@ -1,4 +1,4 @@
-# Parasite Co-localization Analysis
+# Parasite Co-localization Assay
 
 This repository contains the source code for analyzing Chagas parasite co-localization in microscopy images.
 
