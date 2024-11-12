@@ -132,25 +132,25 @@
         \includegraphics[width=\textwidth]{lnbio-cnpem-logo.png}%
       \end{minipage}
     \end{center}
-    \vskip 0.5em
+    \vskip 1em
 
     % Horizontal line
     \hline
-    \vskip 1em
+    \vskip 2em
 
       % Title
       {\centering \LARGE Guia do usuário: Co-localização de parasitas de
         Chagas em células musculares cardíacas \par}
-    \vskip 1em
+    \vskip 2em
 
       % Author
       {\centering \large Patrick. H. F. Alvares, João V. S. Guerra, José G.
         C. Pereira \par} % CHANGE
-    \vskip 1em
+    \vskip 2em
 
       % Date
       {\centering \large \today\par}
-    \vskip 0.5em
+    \vskip 1em
 
     % Horizontal line
     \hline
@@ -158,6 +158,10 @@
     % Do not break page
     \let\endtitlepage\relax
   \end{titlepage}
+  
+  % Version
+  \vfill
+  {\centering v1.0.0\par}
 }
 
 \begin{document}
@@ -196,7 +200,7 @@ ssh <seu.login.cnpem>@marvin.cnpem.br
 
 Após inserir o comando, será solicitado que você insira sua senha, digite sua senha institucional.
 
-\section{Clonando o Repositório ParasiteCoLocalization}
+\section{Preparando o Repositório \texttt{ParasiteCoLocalization}}
 
 Para clonar o repositório \href{https://github.com/cnpem/ParasiteCoLocalization}{ParasiteCoLocalization}, execute o seguinte comando no terminal:
 
@@ -206,7 +210,7 @@ git clone https://github.com/cnpem/ParasiteCoLocalization.git
 
 O comando acima cria uma pasta chamada \texttt{ParasiteCoLocalization} no diretório atual. Esta pasta contém todos os arquivos necessários para a execução da análise de co-localização de parasitas de Chagas em células musculares cardíacas, incluindo o script \texttt{run.sh}, que automatiza a execução da análise via SLURM.
 
-\subsection{Organização do repositório \texttt{ParasiteCoLocalization}}
+\subsection{Estrutura do repositório \texttt{ParasiteCoLocalization}}
 
 Após clonar o repositório \texttt{ParasiteCoLocalization}, acesse o diretório do projeto com o comando:
 
@@ -216,32 +220,28 @@ cd ParasiteCoLocalization
 
 A estrutura de diretórios do projeto é apresentada na árvore de arquivos a seguir:
 
-\begin{forest}
-  for tree={
-  font=\ttfamily,
-  grow'=0,
-  child anchor=west,
-  parent anchor=south,
-  anchor=west,
-  calign=first,
-  edge path={%
-      \noexpand\path [draw, thick, \forestoption{edge}]
-      (!u.south west) |- (.child anchor)\forestoption{edge label};
-    },
-  before typesetting nodes={
-      if n=1
-        {insert before={[, phantom]}}
-        {}
-    },
-  fit=band,
-  before computing xy={l=15pt},
-  }
-  [./ParasiteCoLocalization/
-  [benchmarking]
-  [data/]
-  [docs/]
-  ]
-\end{forest}
+\begin{minted}[frame=single, bgcolor=lightgray, fontsize=\small]{bash}
+./ParasiteCoLocalization/
+├── benchmarking/
+│   ├── benchmarking.py
+│   ├── Columbus/summary.txt
+│   ├── CellProfiler/summary.csv
+│   └── comparison/*.html
+├── data/
+│   └── *.tif
+├── docs/
+│   └── userguide.pdf
+├── parasitecolocalization.cppipe
+├── postprocessing.py
+├── requirements.txt
+├── results/
+│   ├── *.csv
+│   ├── plate_map/*.html
+│   ├── scatter/*.html
+│   ├── ROIs/*.tiff
+│   └── summary.csv
+└── run.sh
+\end{minted}
 
 \subsection{Instalando PyEnv no HPCC Marvin}
 
@@ -319,6 +319,8 @@ scancel <job_id>
 \end{minted}
 
 Por fim, você pode verificar o arquivo de log gerado pelo SLURM (\texttt{slurm\_<job\_id>.out}) para obter informações sobre o seu job.
+
+\section{Ajustando o pipeline \texttt{parasitecolocalization.cppipe}}
 
 \section{Glossário}
 
