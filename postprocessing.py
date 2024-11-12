@@ -251,6 +251,15 @@ def run(results_directory: str, image_filepath: str, cell_filepath: str) -> None
         output_filepath="results/plate_map/infection_rate.html",
     )
 
+    # Plot plate map with median spots per infected cell
+    _plot_plate_map(
+        summary=summary,
+        column="MedianSpotsPerInfectedCell",
+        title="Median Spots per Infected Cell",
+        output_filepath="results/plate_map/median_spots_per_infected_cell.html",
+    )
+
+
     # Create the scatter directory
     os.makedirs(os.path.join(results_directory, "scatter"), exist_ok=True)
 
