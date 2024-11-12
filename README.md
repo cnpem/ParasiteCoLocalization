@@ -25,7 +25,7 @@ or
 
 ```bash
 # Running on HPC marvin machine
-bash run.sh -m marvin
+sbatch run.sh -m marvin
 ```
 
 The output will be saved in the `results` directory and will include the following files:
