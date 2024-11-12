@@ -187,12 +187,12 @@ Para executar a análise de co-localização de parasitas de Chagas em células 
 
 \begin{itemize}
   \item \textbf{Acesso ao GitHub do CNPEM}: Você deve ter acesso ao repositório do projeto (\url{https://github.com/cnpem/ParasiteCoLocalization}) no GitHub do CNPEM (\url{https://github.com/cnpem/}) para baixar os arquivos necessários. Se não tiver acesso, entre em contato com a Equipe de Dados Biológicos (\url{edb@lnbio.cnpem.br}).
-  \item \textbf{Acesso ao HPC Marvin}: Você deve ter acesso ao HPC Marvin para executar o pipeline de análise. Se você não tiver acesso, acesse \url{https://marvindocs.cnpem.br/primeiros-passos/index.html}.
+  \item \textbf{Acesso ao HPCC Marvin}: Você deve ter acesso ao HPCC Marvin para executar o pipeline de análise. Se você não tiver acesso, acesse \url{https://marvindocs.cnpem.br/primeiros-passos/index.html}.
 \end{itemize}
 
 \section{Acessando o HPCC Marvin}
 
-Para acessar o HPCC Marvin, comece abrindo o terminal. Se estiver usando Windows, abra o PowerShell; se estiver usando Linux ou MacOS, abra o terminal Terminal. Para acessar o HPCC Marvin, use o comando:
+Para acessar o HPCC Marvin, comece abrindo o terminal. Se estiver usando Windows, abra o PowerShell; se estiver usando Linux ou MacOS, abra o Terminal. Para acessar o HPCC Marvin, use o comando:
 
 \begin{minted}[frame=single, bgcolor=lightgray, fontsize=\small]{bash}
 ssh <seu.login.cnpem>@marvin.cnpem.br
@@ -210,35 +210,10 @@ git clone https://github.com/cnpem/ParasiteCoLocalization.git
 
 O comando acima cria uma pasta chamada \texttt{ParasiteCoLocalization} no diretório atual. Esta pasta contém todos os arquivos necessários para a execução da análise de co-localização de parasitas de Chagas em células musculares cardíacas, incluindo o script \texttt{run.sh}, que automatiza a execução da análise via SLURM.
 
-\subsection{Estrutura do repositório \texttt{ParasiteCoLocalization}}
-
 Após clonar o repositório \texttt{ParasiteCoLocalization}, acesse o diretório do projeto com o comando:
 
 \begin{minted}[frame=single, bgcolor=lightgray, fontsize=\small]{bash}
 cd ParasiteCoLocalization
-\end{minted}
-
-A estrutura de diretórios do projeto é apresentada na árvore de arquivos a seguir:
-
-\begin{minted}[frame=single, bgcolor=lightgray, fontsize=\small]{bash}
-./ParasiteCoLocalization/
-├── benchmarking/
-│   ├── benchmarking.py
-│   ├── Columbus/summary.txt
-│   ├── CellProfiler/summary.csv
-│   └── comparison/*.html
-├── data/*.tif
-├── docs/userguide.pdf
-├── parasitecolocalization.cppipe
-├── postprocessing.py
-├── requirements.txt
-├── results/
-│   ├── *.csv
-│   ├── plate_map/*.html
-│   ├── scatter/*.html
-│   ├── ROIs/*.tiff
-│   └── summary.csv
-└── run.sh
 \end{minted}
 
 \subsection{Instalando PyEnv no HPCC Marvin}
@@ -259,7 +234,7 @@ Para instalar uma versão específica do Python, execute o seguinte comando:
 pyenv install 3.8.19
 \end{minted}
 
-Para definir a versão do Python como padrão, execute o seguinte comando:
+Para definir a versão do Python como padrão neste diretório, execute o seguinte comando:
 
 \begin{minted}[frame=single, bgcolor=lightgray, fontsize=\small]{bash}
 pyenv local 3.8.19
@@ -271,27 +246,33 @@ Caso deseje utilizar outra versão do Python, você pode selecionar a versão de
 pyenv shell <versão_desejada>
 \end{minted}
 
-\section{Instalando as Dependências do Projeto}
+\subsection{Instalando as Dependências do Python}
 
-Para instalar as dependências do projeto, execute o seguinte comando no terminal:
+Para instalar as dependências do Python, execute o seguinte comando no terminal:
 
 \begin{minted}[frame=single, bgcolor=lightgray, fontsize=\small]{bash}
 pip install -r requirements.txt
 \end{minted}
 
-\section{Enviando Imagens para o HPC Marvin}
+\subsection{Enviando Imagens para o HPCC Marvin}
 
-Para enviar as imagens para o HPC Marvin, você pode usar o comando \texttt{scp} no terminal. O comando \texttt{scp} permite copiar arquivos de e para servidores remotos de forma segura.
+Para enviar as imagens para o HPCC Marvin, você pode usar o comando \texttt{scp} em qualquer terminal.
 
-## Preencher
+\begin{minted}[frame=single, bgcolor=lightgray, fontsize=\small]{bash}
+scp /caminho/para/suas/imagens/*.tiff <seu.login.cnpem>@marvin.cnpem.br:/caminho/para/ParasiteCoLocalization/data
+\end{minted}
 
-Para enviar um arquivo para o HPC Marvin, use o seguinte comando:
+Caso você esteja usando o Windows, você pode usar o \href{WinSCP}{https://winscp.net/eng/download.php} para transferir arquivos de e para o HPCC Marvin. Para isso, siga as instruções abaixo:
 
-## Preencher
+\begin{enumerate}
+  \item Abra o WinSCP e insira o endereço do servidor (\texttt{marvin.cnpem.br}), seu nome de usuário e senha.
+  \item Navegue até o diretório \texttt{ParasiteCoLocalization/data} no HPCC Marvin.
+  \item Arraste e solte os arquivos de imagem do seu computador para o diretório \texttt{ParasiteCoLocalization/data} no HPCC Marvin.
+\end{enumerate}
 
-\section{Executando o Pipeline no HPC Marvin}
+\subsection{Executando o Pipeline no HPCC Marvin}
 
-Após enviar as imagens para o HPC Marvin, você pode executar o pipeline de análise de co-localização de parasitas de Chagas em células musculares cardíacas. O script \texttt{run.sh} executa o pipeline de análise via SLURM, que é o sistema de gerenciamento de tarefas usado no HPC Marvin. Para isso, execute o script \texttt{run.sh} no diretório \texttt{ParasiteCoLocalization}.
+Após enviar as imagens para o HPCC Marvin, você pode executar o pipeline de análise de co-localização de parasitas de Chagas em células musculares cardíacas. O script \texttt{run.sh} executa o pipeline de análise via SLURM, que é o sistema de gerenciamento de tarefas usado no HPCC Marvin. Para isso, execute o script \texttt{run.sh} no diretório \texttt{ParasiteCoLocalization}.
 
 \begin{minted}[frame=single, bgcolor=lightgray, fontsize=\small]{bash}
 cd ParasiteCoLocalization
@@ -300,9 +281,9 @@ sbatch run.sh -m marvin
 
 O comando acima retorna o ID do job SLURM, que você pode usar para monitorar o progresso da análise.
 
-\subsection{Monitoramento do Job SLURM}
+\subsubsection{Monitoramento do Job SLURM}
 
-Para monitorar o progresso do job SLURM, você pode usar o comando \texttt{squeue} no terminal. O comando \texttt{squeue} exibe informações sobre os jobs SLURM em execução no HPC Marvin.
+Para monitorar o progresso do job SLURM, você pode usar o comando \texttt{squeue} no terminal. O comando \texttt{squeue} exibe informações sobre os jobs SLURM em execução no HPCC Marvin.
 
 \begin{minted}[frame=single, bgcolor=lightgray, fontsize=\small]{bash}
 squeue -u <seu.login.cnpem>
@@ -310,7 +291,7 @@ squeue -u <seu.login.cnpem>
 
 Se o job estiver em execução, o estado será exibido como R (em execução). Se o job estiver aguardando na fila, o estado será PD (pendente).
 
-Caso deseje cancelar o job SLURM, você pode usar o comando \texttt{scancel} no terminal. O comando \texttt{scancel} cancela um job SLURM em execução no HPC Marvin.
+Caso deseje cancelar o job SLURM, você pode usar o comando \texttt{scancel} no terminal. O comando \texttt{scancel} cancela um job SLURM em execução no HPCC Marvin.
 
 \begin{minted}[frame=single, bgcolor=lightgray, fontsize=\small]{bash}
 scancel <job_id>
