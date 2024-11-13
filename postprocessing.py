@@ -232,7 +232,9 @@ def run(results_directory: str, image_filepath: str, cell_filepath: str) -> None
         summary=summary,
         column="TotalCells",
         title="Number of Cells",
-        output_filepath="results/plate_map/number_of_cells.html",
+        output_filepath=os.path.join(
+            results_directory, "plate_map", "number_of_cells.html"
+        ),
     )
 
     # Plot plate map with number of spots
@@ -240,7 +242,9 @@ def run(results_directory: str, image_filepath: str, cell_filepath: str) -> None
         summary=summary,
         column="TotalSpots",
         title="Number of Spots",
-        output_filepath="results/plate_map/number_of_spots.html",
+        output_filepath=os.path.join(
+            results_directory, "plate_map", "number_of_spots.html"
+        ),
     )
 
     # Plot plate map with infection rate
@@ -248,7 +252,9 @@ def run(results_directory: str, image_filepath: str, cell_filepath: str) -> None
         summary=summary,
         column="InfectionRate",
         title="Infection Rate (%)",
-        output_filepath="results/plate_map/infection_rate.html",
+        output_filepath=os.path.join(
+            results_directory, "plate_map", "infection_rate.html"
+        ),
     )
 
     # Plot plate map with median spots per infected cell
@@ -256,9 +262,10 @@ def run(results_directory: str, image_filepath: str, cell_filepath: str) -> None
         summary=summary,
         column="MedianSpotsPerInfectedCell",
         title="Median Spots per Infected Cell",
-        output_filepath="results/plate_map/median_spots_per_infected_cell.html",
+        output_filepath=os.path.join(
+            results_directory, "plate_map", "median_spots_per_infected_cell.html"
+        ),
     )
-
 
     # Create the scatter directory
     os.makedirs(os.path.join(results_directory, "scatter"), exist_ok=True)
@@ -269,7 +276,11 @@ def run(results_directory: str, image_filepath: str, cell_filepath: str) -> None
         x="TotalCells",
         y="InfectedCells",
         title="Number of Infected Cells vs. Number of Cells",
-        output_filepath="results/scatter/number_of_cells_vs_number_of_infected_cells.html",
+        output_filepath=os.path.join(
+            results_directory,
+            "scatter",
+            "number_of_cells_vs_number_of_infected_cells.html",
+        ),
     )
 
     # Plot scatter plot for infection rate vs number of cells
@@ -278,7 +289,9 @@ def run(results_directory: str, image_filepath: str, cell_filepath: str) -> None
         x="TotalCells",
         y="InfectionRate",
         title="Infection Rate (%) vs. Number of Cells",
-        output_filepath="results/scatter/number_of_cells_vs_infection_rate.html",
+        output_filepath=os.path.join(
+            results_directory, "scatter", "number_of_cells_vs_infection_rate.html"
+        ),
     )
 
     # Plot scatter plot for median spots per infected cell vs number of cells
@@ -287,7 +300,11 @@ def run(results_directory: str, image_filepath: str, cell_filepath: str) -> None
         x="TotalCells",
         y="MedianSpotsPerInfectedCell",
         title="Median Spots per Infected Cell vs. Number of Cells",
-        output_filepath="results/scatter/median_spots_per_infected_cell_vs_number_of_cells.html",
+        output_filepath=os.path.join(
+            results_directory,
+            "scatter",
+            "median_spots_per_infected_cell_vs_number_of_cells.html",
+        ),
     )
 
     # Plot scatter plot for median spots per infected cell vs infection rate
@@ -296,9 +313,17 @@ def run(results_directory: str, image_filepath: str, cell_filepath: str) -> None
         x="InfectionRate",
         y="MedianSpotsPerInfectedCell",
         title="Median Spots per Infected Cell vs. Infection Rate (%)",
-        output_filepath="results/scatter/median_spots_per_infected_cell_vs_infection_rate.html",
+        output_filepath=os.path.join(
+            results_directory,
+            "scatter",
+            "median_spots_per_infected_cell_vs_infection_rate.html",
+        ),
     )
 
 
 if __name__ == "__main__":
-    run("results", "results/Image.csv", "results/Cell.csv")
+    run(
+        results_directory="results",
+        image_filepath="results/Image.csv",
+        cell_filepath="results/Cell.csv",
+    )
