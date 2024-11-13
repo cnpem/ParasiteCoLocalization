@@ -275,7 +275,6 @@ Caso você esteja usando o Windows, você pode usar o \href{WinSCP}{https://wins
 Após enviar as imagens para o HPCC Marvin, você pode executar o pipeline de análise de co-localização de parasitas de Chagas em células musculares cardíacas. O script \texttt{run.sh} executa o pipeline de análise via SLURM, que é o sistema de gerenciamento de tarefas usado no HPCC Marvin. Para isso, execute o script \texttt{run.sh} no diretório \texttt{ParasiteCoLocalization}.
 
 \begin{minted}[frame=single, bgcolor=lightgray, fontsize=\small]{bash}
-cd ParasiteCoLocalization
 sbatch run.sh -m marvin
 \end{minted}
 
