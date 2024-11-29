@@ -123,23 +123,30 @@ def _plot_plate_map(
         height=800,
         width=1200,
         text_auto=".1f",
+        zmin=0,
         range_color=[0, round(plate_map.max().max(), -2)],
     )
 
     # Update the layout
     fig.update(
         layout=dict(
-            title={"text": f"{title}", "x": 0.5},
+            title={"text": f"{title}", "x": 0.5, "font": {"size": 30}},
             xaxis=dict(
                 title=None,
                 tickvals=list(range(1, 25)),
                 tickangle=0,
+                tickfont={"size": 15},
                 side="top",
             ),
-            yaxis=dict(title=None, autorange="reversed"),
+            yaxis=dict(
+                title=None,
+                autorange="reversed",
+                tickfont={"size": 15},
+            ),
             coloraxis_colorbar=dict(
-                title=title,
+                title={"text": None, "font": {"size": 20}},
                 ticks="outside",
+                tickfont={"size": 20},  # Increase colorbar tick text size
                 yanchor="top",
                 y=1,
                 thicknessmode="pixels",
@@ -191,7 +198,7 @@ def _plot_scatter_plot(
         hover_data={x: ":.1f", y: ":.1f"},
         marginal_x="histogram",
         marginal_y="histogram",
-        trendline="ols",
+        # trendline="ols",
         height=1200,
         width=1200,
     )
@@ -222,7 +229,8 @@ def run(results_directory: str, image_filepath: str, cell_filepath: str) -> None
         Path to the CSV file with the results of the cell object.
     """
     # Summarize the results
-    summary = summarize(results_directory, image_filepath, cell_filepath)
+    # summary = summarize(results_directory, image_filepath, cell_filepath)
+    summary = pandas.read_csv("results/summary.csv", index_col=0)
 
     # Create the plate_map directory
     os.makedirs(os.path.join(results_directory, "plate_map"), exist_ok=True)
