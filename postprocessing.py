@@ -229,8 +229,7 @@ def run(results_directory: str, image_filepath: str, cell_filepath: str) -> None
         Path to the CSV file with the results of the cell object.
     """
     # Summarize the results
-    # summary = summarize(results_directory, image_filepath, cell_filepath)
-    summary = pandas.read_csv("results/summary.csv", index_col=0)
+    summary = summarize(results_directory, image_filepath, cell_filepath)
 
     # Create the plate_map directory
     os.makedirs(os.path.join(results_directory, "plate_map"), exist_ok=True)
