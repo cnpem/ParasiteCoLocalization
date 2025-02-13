@@ -46,6 +46,12 @@ results/
     └── median_spots_per_infected_cell_vs_infection_rate.html # Scatter plot comparing the infection rate and number of infected cells per well
 ```
 
+### Authors
+
+- [Patrick H. F. Alvares](https://github.com/PatrickHFA)
+- [João V. S. Guerra](https://github.com/jvsguerra)
+- [José G. C. Pereira](https://github.com/zgcarvalho)
+
 ## Benchmarking
 
 The results obtained using the parasite co-localization protocols developed with the open-source software CellProfiler were benchmarked against the reference protocol applied in the proprietary high-content image analysis software, Columbus.
@@ -70,12 +76,6 @@ benchmarking/
     ├── infection_rate.html # Scatter plot comparing the infection rate per well
     └── median_spots_per_infected_cell.html # Scatter plot comparing the median number of parasites per infected cell per well
 ```
-
-## Authors
-
-- [Patrick H. F. Alvares](https://github.com/PatrickHFA)
-- [João V. S. Guerra](https://github.com/jvsguerra)
-- [José G. C. Pereira](https://github.com/zgcarvalho)
 
 ## License
 

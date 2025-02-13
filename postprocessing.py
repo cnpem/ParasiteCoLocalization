@@ -2,7 +2,7 @@ import os
 
 import pandas
 import plotly.express as px
-
+import sys
 
 # Function to convert well name
 def _convert_well_name(well):
@@ -329,8 +329,9 @@ def run(results_directory: str, image_filepath: str, cell_filepath: str) -> None
 
 
 if __name__ == "__main__":
+    results_dir = sys.argv[1]
     run(
-        results_directory="results",
-        image_filepath="results/Image.csv",
-        cell_filepath="results/Cell.csv",
+        results_directory=f"{results_dir}",
+        image_filepath=f"{results_dir}/Image.csv",
+        cell_filepath=f"{results_dir}/Cell.csv",
     )
